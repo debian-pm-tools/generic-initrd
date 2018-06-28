@@ -7,10 +7,10 @@ env:
 
 matrix:
   include:
-    - env: ARCH=armhf
-    - env: ARCH=arm64
-    - env: ARCH=amd64
-    - env: ARCH=i386
+    - env: ARCH=armhf TRAVIS_TAG=continuous
+    - env: ARCH=arm64 TRAVIS_TAG=continuous
+    - env: ARCH=amd64 TRAVIS_TAG=continuous
+    - env: ARCH=i386 TRAVIS_TAG=continuous
 
 install:
   - echo "deb http://de.archive.ubuntu.com/ubuntu xenial main universe" |sudo tee -a /etc/apt/sources.list
