@@ -46,7 +46,7 @@ done
 # list all packages needed for building the initrd here
 [ -z $INCHROOTPKGS ] && INCHROOTPKGS="initramfs-tools"
 
-BOOTSTRAP_BIN="qemu-debootstrap --arch $ARCH --variant=minbase"
+BOOTSTRAP_BIN="qemu-debootstrap --include="$INCHROOTPKGS" --arch $ARCH --variant=minbase"
 
 umount_chroot() {
 	chroot $ROOT umount /sys >/dev/null 2>&1 || true
@@ -94,8 +94,7 @@ fi
 
 # install all packages we need to roll the generic initrd
 do_chroot $ROOT "$APT_COMMAND update"
-do_chroot $ROOT "$APT_COMMAND dist-upgrade"
-do_chroot $ROOT "$APT_COMMAND install $INCHROOTPKGS --no-install-recommends"
+do_chroot $ROOT "$APT_COMMAND full-upgrade"
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib/$DEB_HOST_MULTIARCH"
 
