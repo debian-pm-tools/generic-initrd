@@ -14,9 +14,12 @@ matrix:
     - env: ARCH=i386
 
 install:
+  - echo "deb http://de.archive.ubuntu.com/ubuntu xenial main universe" |sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update
+  - sudo apt-get install dpkg debootstrap -y
   - echo "deb http://de.archive.ubuntu.com/ubuntu bionic main universe" |sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
-  - sudo apt-get install dpkg qemu-user-static debootstrap -y
+  - sudo apt-get install qemu-user-static -y
 
 script:
   - sudo ./build-initrd.sh
