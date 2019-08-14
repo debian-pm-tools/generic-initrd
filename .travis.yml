@@ -24,13 +24,6 @@ install:
 script:
   - sudo ./build-initrd.sh
 
-before_cache:
-  - sudo chown -R travis build/
-
-cache:
-  directories:
-    - build/
-
 before_deploy:
     # Set up git user name and tag this commit
   - git config --local user.name "JBBgameich"
