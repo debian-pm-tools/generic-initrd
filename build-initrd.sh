@@ -90,6 +90,7 @@ if [ ! -e $ROOT/.min-done ]; then
 	touch $ROOT/.min-done
 else
 	echob "Build environment for $ARCH found, reusing."
+	cp /etc/resolv.conf $ROOT/etc/resolv.conf
 fi
 
 # install all packages we need to roll the generic initrd
